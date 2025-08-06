@@ -30,7 +30,19 @@ const (
 	// CancelUnbondingDelegationMethod defines the ABI method name for the staking
 	// CancelUnbondingDelegation transaction.
 	CancelUnbondingDelegationMethod = "cancelUnbondingDelegation"
+
+	Foo = "foo"
 )
+
+func (p Precompile) Foo(
+	ctx sdk.Context,
+	contract *vm.Contract,
+	stateDB vm.StateDB,
+	method *abi.Method,
+	args []interface{},
+) ([]byte, error) {
+	return method.Outputs.Pack(true)
+}
 
 // CreateValidator performs create validator.
 func (p Precompile) CreateValidator(

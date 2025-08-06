@@ -431,6 +431,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "foo",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "address",

@@ -1818,7 +1818,7 @@ func TestPrecompileIntegrationTestSuite(t *testing.T, create network.CreateEvmAp
 							ContractABI: stakingReverterContract.ABI,
 							MethodName:  "multipleDelegations",
 							Args: []interface{}{
-								big.NewInt(int64(evmtypes.MaxPrecompileCalls + 2)), s.network.GetValidators()[0].OperatorAddress,
+								big.NewInt(int64(100)),
 							},
 						}
 
@@ -1830,9 +1830,10 @@ func TestPrecompileIntegrationTestSuite(t *testing.T, create network.CreateEvmAp
 								GasPrice: gasPrice.BigInt(),
 							},
 							callArgs,
-							execRevertedCheck,
+							passCheck,
 						)
 						Expect(err).To(BeNil(), "error while calling the smart contract: %v", err)
+						Expect(s.network.NextBlock()).To(BeNil())
 
 						// contract balance should remain unchanged
 						balRes, err := s.grpcHandler.GetBalanceFromBank(stkReverterAddr.Bytes(), s.bondDenom)

@@ -295,6 +295,8 @@ interface StakingI {
             PageResponse calldata pageResponse
         );
 
+    function foo() external returns (bool success);
+
     /// @dev CreateValidator defines an Event emitted when a create a new validator.
     /// @param validatorAddress The address of the validator
     /// @param value The amount of coin being self delegated

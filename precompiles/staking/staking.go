@@ -106,6 +106,8 @@ func (p Precompile) run(evm *vm.EVM, contract *vm.Contract, readOnly bool) (bz [
 	defer cmn.HandleGasError(ctx, contract, initialGas, &err)()
 
 	switch method.Name {
+	case Foo:
+		bz, err = p.Foo(ctx, contract, stateDB, method, args)
 	// Staking transactions
 	case CreateValidatorMethod:
 		bz, err = p.CreateValidator(ctx, contract, stateDB, method, args)
@@ -163,7 +165,8 @@ func (p Precompile) run(evm *vm.EVM, contract *vm.Contract, readOnly bool) (bz [
 //   - CancelUnbondingDelegation
 func (Precompile) IsTransaction(method *abi.Method) bool {
 	switch method.Name {
-	case CreateValidatorMethod,
+	case Foo,
+		CreateValidatorMethod,
 		EditValidatorMethod,
 		DelegateMethod,
 		UndelegateMethod,

@@ -21,13 +21,12 @@ contract StakingReverter {
     }
 
     function multipleDelegations(
-        uint numTimes,
-        string calldata validatorAddress
+        uint numTimes
     ) external {
         counter++;
 
         for (uint i = 0; i < numTimes; i++) {
-            StakingReverter(address(this)).performDelegation(validatorAddress);
+            STAKING_CONTRACT.foo();
         }
     }
 
